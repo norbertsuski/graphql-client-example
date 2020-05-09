@@ -4,7 +4,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 import { GlobalStyle } from './styles/global-style';
-import { UsersList } from './components';
+import { UsersList, UserForm } from './components';
 import styled from 'styled-components';
 
 const client = new ApolloClient({
@@ -22,6 +22,7 @@ ReactDOM.render(
     <ApolloProvider client={client}>
     <Content>
       <h1>Simple GraphQL client</h1>
+      <UserForm />
       <UsersList />
     </Content>
     </ApolloProvider>
