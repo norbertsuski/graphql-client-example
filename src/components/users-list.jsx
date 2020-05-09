@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import styled from 'styled-components';
+
+import UserDetails from './user-details';
 
 const USERS_QUERY = gql`{
   users {
@@ -11,27 +13,33 @@ const USERS_QUERY = gql`{
   }
 }`;
 
-const User = styled.p`
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
-  margin: 15px 0;
+const StyledUl = styled.ul`
+  list-style: none;
+`;
 
+const StyledLi = styled.li`
   :hover {
     cursor: pointer;
-    color: blue;
+    text-decoration: underline;
   }
 `;
 
-export const UsersList = ()=> {
+const UsersList = ()=> {
   const { loading, error, data } = useQuery(USERS_QUERY);
+  const [userId, setUserId] = useState(null);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error...</p>;
 
   return <div>
-      {data.users.map(({ id, firstname, lastname })=> <User key={id}>
+    <h2>Users</h2>
+    <StyledUl>
+      {data.users.map(({ id, firstname, lastname })=> <StyledLi onClick={()=> setUserId(id)} key={id}>
         {firstname} {lastname}
-      </User>)}
-    </div>;
+      </StyledLi>)}
+    </StyledUl>
+    {userId && <UserDetails id={userId}></UserDetails>}
+  </div>;
 }
+
+export default UsersList;

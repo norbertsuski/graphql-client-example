@@ -13,7 +13,8 @@ export const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-weight: normal;
-    font-size: 3rem;
+    font-size: 2rem;
+    margin-bottom: 20px;
   }
 `;
 

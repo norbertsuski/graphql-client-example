@@ -13,10 +13,7 @@ const client = new ApolloClient({
 
 const Content = styled.div`
   margin: 100px auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 700px;
 `;
 
 ReactDOM.render(
